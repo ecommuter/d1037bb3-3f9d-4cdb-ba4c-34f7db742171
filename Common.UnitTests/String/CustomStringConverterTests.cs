@@ -1,4 +1,6 @@
-﻿namespace Common.UnitTests.String
+﻿using System.Linq;
+
+namespace Common.UnitTests.String
 {
     public class CustomStringConverterTests
     {
@@ -56,6 +58,20 @@
             result.Should().BeEquivalentTo(output);
         }
 
+        [Theory]
+        [MemberData(nameof(TestStringListInvalidData))]
+        public void ConvertStringListToNumberList_ShouldReturnEmptyList_WhenInputIsInvalid(IList<string> input)
+        {
+            // arrange
+            var sut = CreateCustomStringConverter();
+
+            // act
+            var result = sut.ConvertStringListToNumberList(input);
+
+            // assert
+            result.Should().BeEmpty();
+        }
+
         #endregion
 
         #region Private Methods
@@ -65,11 +81,17 @@
         private static IEnumerable<object[]> TestStringData()
         {
             yield return new object[] { "6 1 5 9 2", " ", new List<string> { "6", "1", "5", "9", "2" } };
+            yield return new object[] { "61592", " ", new List<string> { "61592" } };
         }
 
         private static IEnumerable<object[]> TestStringListData()
         {
             yield return new object[] { new List<string> { "6", "1", "5", "9", "2" }, new List<int> { 6, 1, 5, 9, 2 } };
+        }
+
+        private static IEnumerable<object[]> TestStringListInvalidData()
+        {
+            yield return new object[] { new List<string> { "a", "b", "c" } };
         }
 
         #endregion
