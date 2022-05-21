@@ -2,12 +2,24 @@
 {
     public class CustomStringConverterTests
     {
+        private readonly Fixture _fixture;
+
+        public CustomStringConverterTests()
+        {
+            _fixture = new Fixture();
+
+            _fixture.Customizations.Add(
+                new TypeRelay(
+                    typeof(ICustomStringConverter),
+                    typeof(CustomStringConverter)));
+        }
+
         [Theory]
         [InlineData("6 1 5 9 2", " ")]
         public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings_InlineDataTests(string input, string delimiter)
         {
             // arrange
-            var sut = new CustomStringConverter();
+            var sut = _fixture.Create<ICustomStringConverter>();
 
             // act
             var result = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);
@@ -22,7 +34,7 @@
         public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers_InlineDataTests(string input, string delimiter)
         {
             // arrange
-            var sut = new CustomStringConverter();
+            var sut = _fixture.Create<ICustomStringConverter>();
 
             // act
             var stringList = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);

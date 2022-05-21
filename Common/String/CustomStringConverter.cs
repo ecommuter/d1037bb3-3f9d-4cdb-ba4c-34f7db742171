@@ -1,6 +1,6 @@
 ﻿namespace Common.String
 {
-    public class CustomStringConverter
+    public class CustomStringConverter : ICustomStringConverter
     {
         public IList<string> ConvertStringWithSeparatorIntoStringList(string input, string delimiter)
         {
