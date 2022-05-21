@@ -33,14 +33,26 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Restore NuGet packages
+      - name: Restore NuGet packages - Common
         working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Common.UnitTests
         run: dotnet restore
 
-      - name: Build
+      - name: Build - Common
         working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Common.UnitTests
         run: dotnet build -c Release --no-restore
     
-      - name: Test
+      - name: Test - Common
         working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Common.UnitTests
+        run: dotnet test -c Release --no-build
+        
+      - name: Restore NuGet packages - Business
+        working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Business.UnitTests
+        run: dotnet restore
+
+      - name: Build - Business
+        working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Business.UnitTests
+        run: dotnet build -c Release --no-restore
+    
+      - name: Test - Business
+        working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Business.UnitTests
         run: dotnet test -c Release --no-build
