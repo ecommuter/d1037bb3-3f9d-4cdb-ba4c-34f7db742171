@@ -54,14 +54,15 @@
                     {
                         yield return newList;
                         newList = new List<int>() { input[i] };
-                        if (i == input.Count - 1)
-                        {
-                            yield return newList;
-                        }
                     }
                     else
                     {
                         newList.Add(input[i]);
+                    }
+
+                    if (i == input.Count - 1)
+                    {
+                        yield return newList;
                     }
                 }
             }
