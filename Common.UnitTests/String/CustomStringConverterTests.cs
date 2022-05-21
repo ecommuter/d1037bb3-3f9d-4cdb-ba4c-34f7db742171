@@ -19,7 +19,7 @@
         public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings_InlineDataTests(string input, string delimiter)
         {
             // arrange
-            var sut = _fixture.Create<ICustomStringConverter>();
+            var sut = CreateCustomStringConverter();
 
             // act
             var result = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);
@@ -34,7 +34,7 @@
         public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers_InlineDataTests(string input, string delimiter)
         {
             // arrange
-            var sut = _fixture.Create<ICustomStringConverter>();
+            var sut = CreateCustomStringConverter();
 
             // act
             var stringList = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);
@@ -45,5 +45,7 @@
             result.Should().AllBeOfType<int>();
             result.Should().HaveSameCount(stringList);
         }
+
+        private ICustomStringConverter CreateCustomStringConverter() => _fixture.Create<ICustomStringConverter>();
     }
 }
