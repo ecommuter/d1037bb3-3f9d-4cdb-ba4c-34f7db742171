@@ -45,6 +45,10 @@ jobs:
         working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Common.UnitTests
         run: dotnet test -c Release --no-build
         
+      - name: Restore NuGet packages - Business Process
+        working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Business
+        run: dotnet restore
+        
       - name: Restore NuGet packages - Business
         working-directory: /home/runner/work/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/d1037bb3-3f9d-4cdb-ba4c-34f7db742171/Business.UnitTests
         run: dotnet restore
