@@ -2,6 +2,8 @@
 {
     public class CustomStringConverter : ICustomStringConverter
     {
+        #region Public Methods
+
         public IList<string> ConvertStringWithSeparatorIntoStringList(string input, string delimiter)
         {
             return input.Split(delimiter).ToList();
@@ -11,5 +13,7 @@
         {
             return input.Where(s => int.TryParse(s, out _)).Select(int.Parse).ToList();
         }
+
+        #endregion
     }
 }

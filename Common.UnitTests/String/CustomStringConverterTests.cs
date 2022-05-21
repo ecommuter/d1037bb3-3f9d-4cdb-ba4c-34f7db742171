@@ -2,7 +2,13 @@
 {
     public class CustomStringConverterTests
     {
+        #region Private Fields
+
         private readonly Fixture _fixture;
+
+        #endregion
+
+        #region Constructor
 
         public CustomStringConverterTests()
         {
@@ -14,9 +20,13 @@
                     typeof(CustomStringConverter)));
         }
 
+        #endregion
+
+        #region Public Test Methods
+
         [Theory]
-        [InlineData("6 1 5 9 2", " ")]
-        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings_InlineDataTests(string input, string delimiter)
+        [MemberData(nameof(TestStringData))]
+        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings_InlineDataTests(string input, string delimiter, IList<string> output)
         {
             // arrange
             var sut = CreateCustomStringConverter();
@@ -27,25 +37,41 @@
             // assert
             result.Should().NotBeNullOrEmpty();
             result.Should().AllBeOfType<string>();
+            result.Should().BeEquivalentTo(output);
         }
 
         [Theory]
-        [InlineData("6 1 5 9 2", " ")]
-        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers_InlineDataTests(string input, string delimiter)
+        [MemberData(nameof(TestStringListData))]
+        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers_InlineDataTests(IList<string> input, IList<int> output)
         {
             // arrange
             var sut = CreateCustomStringConverter();
 
             // act
-            var stringList = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);
-            var result = sut.ConvertStringListToNumberList(stringList);
+            var result = sut.ConvertStringListToNumberList(input);
 
             // assert
             result.Should().NotBeNullOrEmpty();
             result.Should().AllBeOfType<int>();
-            result.Should().HaveSameCount(stringList);
+            result.Should().BeEquivalentTo(output);
         }
 
+        #endregion
+
+        #region Private Methods
+
         private ICustomStringConverter CreateCustomStringConverter() => _fixture.Create<ICustomStringConverter>();
+
+        private static IEnumerable<object[]> TestStringData()
+        {
+            yield return new object[] { "6 1 5 9 2", " ", new List<string> { "6", "1", "5", "9", "2" } };
+        }
+
+        private static IEnumerable<object[]> TestStringListData()
+        {
+            yield return new object[] { new List<string> { "6", "1", "5", "9", "2" }, new List<int> { 6, 1, 5, 9, 2 } };
+        }
+
+        #endregion
     }
 }

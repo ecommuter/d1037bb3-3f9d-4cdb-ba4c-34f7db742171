@@ -8,4 +8,4 @@ services:
     entrypoint:
         - dotnet
         - test
-        - /code/Common.UnitTests/Common.UnitTests.csproj
+        - /code/Business.UnitTests/Business.UnitTests.csproj
