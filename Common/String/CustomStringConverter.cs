@@ -6,5 +6,10 @@
         {
             return input.Split(delimiter).ToList();
         }
+
+        public IList<int> ConvertStringListToNumberList(IList<string> input)
+        {
+            return input.Where(s => int.TryParse(s, out _)).Select(int.Parse).ToList();
+        }
     }
 }
