@@ -78,17 +78,20 @@ namespace Common.UnitTests.String
 
         private ICustomStringConverter CreateCustomStringConverter() => _fixture.Create<ICustomStringConverter>();
 
+        // To test spliting with the delimiter.
         private static IEnumerable<object[]> TestStringData()
         {
             yield return new object[] { "6 1 5 9 2", " ", new List<string> { "6", "1", "5", "9", "2" } };
             yield return new object[] { "61592", " ", new List<string> { "61592" } };
         }
 
+        // To test conversion from a list of strings to a list of numbers.
         private static IEnumerable<object[]> TestStringListData()
         {
             yield return new object[] { new List<string> { "6", "1", "5", "9", "2" }, new List<int> { 6, 1, 5, 9, 2 } };
         }
 
+        // To test invalid list of strings for conversion to a list of numbers.
         private static IEnumerable<object[]> TestStringListInvalidData()
         {
             yield return new object[] { new List<string> { "a", "b", "c" } };
