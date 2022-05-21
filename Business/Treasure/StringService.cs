@@ -22,7 +22,7 @@
         #region Public Test Methods
 
         /// <summary>
-        /// This method controls the flow
+        /// This method controls the flow.
         /// </summary>
         /// <param name="input">The input string for numbers separated with whitespace.</param>
         /// <param name="delimiter">The separator between numbers in the input string.</param>

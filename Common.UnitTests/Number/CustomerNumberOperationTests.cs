@@ -31,6 +31,21 @@
             result.Should().BeEquivalentTo(output.Values);
         }
 
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void ConvertNumberListToDictionary_ShouldReturnAListOfStrings(IList<int> input, IDictionary<int, IList<int>> output)
+        {
+            // arrange
+            var sut = CreateCustomerNumberOperation();
+
+            // act
+            var result = sut.ConvertNumberListToDictionary(input);
+
+            // assert
+            result.Should().NotBeNullOrEmpty();
+            result.Should().BeEquivalentTo(output);
+        }
+
         #endregion
 
         #region Private Methods

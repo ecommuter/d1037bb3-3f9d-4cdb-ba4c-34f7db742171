@@ -2,6 +2,31 @@
 {
     public class CustomerNumberOperation : ICustomerNumberOperation
     {
+        /// <summary>
+        /// Create a dictionary from many lists of number segements.
+        /// </summary>
+        /// <param name="input">A list of numbers.</param>
+        /// <returns>A dictionary of number segments.</returns>
+        public IDictionary<int, IList<int>> ConvertNumberListToDictionary(IList<int> input)
+        {
+            IDictionary<int, IList<int>> dict = new Dictionary<int, IList<int>>();
+
+            int key = 0;
+
+            CreateNumberIncrementSegments(input).ToList().ForEach(s =>
+            {
+                key += 1;
+                dict.Add(key, s);
+            });
+
+            return dict;
+        }
+
+        /// <summary>
+        /// Create increasing number segments.
+        /// </summary>
+        /// <param name="input">A list of numbers.</param>
+        /// <returns>A list of number segment.</returns>
         public IEnumerable<IList<int>> CreateNumberIncrementSegments(IList<int> input)
         {
             IList<int> newList = new List<int>();
