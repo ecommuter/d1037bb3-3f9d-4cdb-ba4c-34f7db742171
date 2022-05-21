@@ -2,8 +2,8 @@
 {
     public interface ICustomStringConverter
     {
-        IList<int> ConvertStringListToNumberList(IList<string> input);
-
         IList<string> ConvertStringWithSeparatorIntoStringList(string input, string delimiter);
+
+        string ConvertStringListIntoStringWithSeparator(IList<string> input, string delimiter);
     }
 }

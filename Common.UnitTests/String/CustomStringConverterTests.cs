@@ -34,32 +34,17 @@
 
         [Theory]
         [MemberData(nameof(TestStringListData))]
-        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers(IList<string> input, IList<int> output)
+        public void ConvertStringListIntoStringWithSeparator_ShouldReturnAString(IList<string> input, string delimiter, string output)
         {
             // arrange
             var sut = CreateCustomStringConverter();
 
             // act
-            var result = sut.ConvertStringListToNumberList(input);
+            var result = sut.ConvertStringListIntoStringWithSeparator(input, delimiter);
 
             // assert
             result.Should().NotBeNullOrEmpty();
-            result.Should().AllBeOfType<int>();
             result.Should().BeEquivalentTo(output);
-        }
-
-        [Theory]
-        [MemberData(nameof(TestStringListInvalidData))]
-        public void ConvertStringListToNumberList_ShouldReturnEmptyList_WhenInputIsInvalid(IList<string> input)
-        {
-            // arrange
-            var sut = CreateCustomStringConverter();
-
-            // act
-            var result = sut.ConvertStringListToNumberList(input);
-
-            // assert
-            result.Should().BeEmpty();
         }
 
         #endregion
@@ -82,13 +67,7 @@
         // To test conversion from a list of strings to a list of numbers.
         private static IEnumerable<object[]> TestStringListData()
         {
-            yield return new object[] { new List<string> { "6", "1", "5", "9", "2" }, new List<int> { 6, 1, 5, 9, 2 } };
-        }
-
-        // To test invalid list of strings for conversion to a list of numbers.
-        private static IEnumerable<object[]> TestStringListInvalidData()
-        {
-            yield return new object[] { new List<string> { "a", "b", "c" } };
+            yield return new object[] { new List<string> { "6", "1", "5", "9", "2" }, " ", "6 1 5 9 2" };
         }
 
         #endregion

@@ -9,7 +9,7 @@
         /// <returns>Ordered dictionary of number segments.</returns>
         public IOrderedEnumerable<KeyValuePair<int, IList<int>>> SortDictionaryInDescendingOrder(IDictionary<int, IList<int>> input)
         {
-            return input.OrderByDescending(i => i.Value.Count).OrderBy(i => i.Key);
+            return input.OrderByDescending(i => i.Value.Count).ThenBy(i => i.Key);
         }
 
         /// <summary>
@@ -65,6 +65,26 @@
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Convert a list of number strings to a list of numbers.
+        /// </summary>
+        /// <param name="input">A string with numbers separated with a delimiter.</param>
+        /// <returns>A list of numbers.</returns>
+        public IList<int> ConvertStringListToNumberList(IList<string> input)
+        {
+            return input.Where(s => int.TryParse(s, out _)).Select(int.Parse).ToList();
+        }
+
+        /// <summary>
+        /// Convert a list of number to a list of strings.
+        /// </summary>
+        /// <param name="input">A list of numbers.</param>
+        /// <returns>A list of strings.</returns>
+        public IList<string> ConvertNumberListToStringList(IList<int> input)
+        {
+            return input.ToList().ConvertAll<string>(x => x.ToString());
         }
     }
 }

@@ -13,6 +13,11 @@
 
             _fixture.Customizations.Add(
                 new TypeRelay(
+                    typeof(ICustomerNumberOperation),
+                    typeof(CustomerNumberOperation)));
+
+            _fixture.Customizations.Add(
+                new TypeRelay(
                     typeof(IStringService),
                     typeof(StringService)));
         }
@@ -23,7 +28,7 @@
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter, IList<int> output)
+        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter, string output)
         {
             // arrange
             var sut = _fixture.Create<IStringService>();
@@ -33,7 +38,6 @@
 
             // assert
             result.Should().NotBeNullOrEmpty();
-            result.Should().AllBeOfType<int>();
             result.Should().BeEquivalentTo(output);
         }
 
@@ -44,7 +48,7 @@
         // To test the whole business flows
         private static IEnumerable<object[]> TestData()
         {
-            yield return new object[] { "6 1 5 9 2", " ", new List<int> { 6, 1, 5, 9, 2 } };
+            yield return new object[] { "6 1 5 9 2", " ", "1 5 9" };
         }
 
         #endregion
