@@ -1,19 +1,11 @@
 ﻿namespace Business.UnitTests.Treasure
 {
-    public class StringServiceTests
+    public class StringServiceTests : TestsBase
     {
-        #region Private Fields
-
-        private readonly Fixture _fixture;
-
-        #endregion
-
         #region Constructor
 
         public StringServiceTests()
         {
-            _fixture = new Fixture();
-
             _fixture.Customizations.Add(
                 new TypeRelay(
                     typeof(ICustomStringConverter),
@@ -31,7 +23,7 @@
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString_InlineDataTests(string input, string delimiter, IList<int> output)
+        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter, IList<int> output)
         {
             // arrange
             var sut = _fixture.Create<IStringService>();
@@ -47,7 +39,7 @@
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods - Test Data
 
         // To test the whole business flows
         private static IEnumerable<object[]> TestData()

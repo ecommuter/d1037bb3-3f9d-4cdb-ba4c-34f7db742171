@@ -1,21 +1,11 @@
-﻿using System.Linq;
-
-namespace Common.UnitTests.String
+﻿namespace Common.UnitTests.String
 {
-    public class CustomStringConverterTests
+    public class CustomStringConverterTests : TestsBase
     {
-        #region Private Fields
-
-        private readonly Fixture _fixture;
-
-        #endregion
-
         #region Constructor
 
         public CustomStringConverterTests()
         {
-            _fixture = new Fixture();
-
             _fixture.Customizations.Add(
                 new TypeRelay(
                     typeof(ICustomStringConverter),
@@ -28,7 +18,7 @@ namespace Common.UnitTests.String
 
         [Theory]
         [MemberData(nameof(TestStringData))]
-        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings_InlineDataTests(string input, string delimiter, IList<string> output)
+        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings(string input, string delimiter, IList<string> output)
         {
             // arrange
             var sut = CreateCustomStringConverter();
@@ -44,7 +34,7 @@ namespace Common.UnitTests.String
 
         [Theory]
         [MemberData(nameof(TestStringListData))]
-        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers_InlineDataTests(IList<string> input, IList<int> output)
+        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers(IList<string> input, IList<int> output)
         {
             // arrange
             var sut = CreateCustomStringConverter();
@@ -77,6 +67,10 @@ namespace Common.UnitTests.String
         #region Private Methods
 
         private ICustomStringConverter CreateCustomStringConverter() => _fixture.Create<ICustomStringConverter>();
+
+        #endregion
+
+        #region Private Methods - Test Data
 
         // To test spliting with the delimiter.
         private static IEnumerable<object[]> TestStringData()

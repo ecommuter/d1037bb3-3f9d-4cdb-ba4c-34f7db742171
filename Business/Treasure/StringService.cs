@@ -5,14 +5,16 @@
         #region Private Fields
 
         private readonly ICustomStringConverter _customStringConverter;
+        private readonly ICustomerNumberOperation _customerNumberOperation;
 
         #endregion
 
         #region Constructor
 
-        public StringService(ICustomStringConverter customStringConverter)
+        public StringService(ICustomStringConverter customStringConverter, ICustomerNumberOperation customerNumberOperation)
         {
             _customStringConverter = customStringConverter;
+            _customerNumberOperation = customerNumberOperation;
         }
 
         #endregion
