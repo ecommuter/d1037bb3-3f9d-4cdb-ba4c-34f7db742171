@@ -33,13 +33,28 @@
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void ConvertNumberListToDictionary_ShouldReturnAListOfStrings(IList<int> input, IDictionary<int, IList<int>> output)
+        public void ConvertNumberListToDictionary_ShouldReturnADictionaryOfSegments(IList<int> input, IDictionary<int, IList<int>> output)
         {
             // arrange
             var sut = CreateCustomerNumberOperation();
 
             // act
             var result = sut.ConvertNumberListToDictionary(input);
+
+            // assert
+            result.Should().NotBeNullOrEmpty();
+            result.Should().BeEquivalentTo(output);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestDataOrdering))]
+        public void SortDictionaryInDescendingOrder_ShouldReturnAListOfStrings(IDictionary<int, IList<int>> input, IDictionary<int, IList<int>> output)
+        {
+            // arrange
+            var sut = CreateCustomerNumberOperation();
+
+            // act
+            var result = sut.SortDictionaryInDescendingOrder(input);
 
             // assert
             result.Should().NotBeNullOrEmpty();
@@ -65,6 +80,25 @@
                 { 2, new List<int> { 1, 5, 9 } },
                 { 3, new List<int> { 2 } }
             } };
+        }
+
+        // To test the reordering of the dictionary
+        private static IEnumerable<object[]> TestDataOrdering()
+        {
+            yield return new object[] { 
+                new Dictionary<int, IList<int>>()
+                {
+                    { 1, new List<int> { 6 } },
+                    { 2, new List<int> { 1, 5, 9 } },
+                    { 3, new List<int> { 2 } }
+                }, 
+                new Dictionary<int, IList<int>>()
+                {
+                    { 2, new List<int> { 1, 5, 9 } },
+                    { 1, new List<int> { 6 } },
+                    { 3, new List<int> { 2 } }
+                }
+            };
         }
 
         #endregion

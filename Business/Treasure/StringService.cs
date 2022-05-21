@@ -11,10 +11,12 @@
 
         #region Constructor
 
-        public StringService(ICustomStringConverter customStringConverter, ICustomerNumberOperation customerNumberOperation)
+        public StringService(
+            ICustomStringConverter customStringConverter, 
+            ICustomerNumberOperation customerNumberOperation)
         {
-            _customStringConverter = customStringConverter;
-            _customerNumberOperation = customerNumberOperation;
+            _customStringConverter = Guard.Against.Null(customStringConverter, nameof(customStringConverter));
+            _customerNumberOperation = Guard.Against.Null(customerNumberOperation, nameof(customerNumberOperation));
         }
 
         #endregion

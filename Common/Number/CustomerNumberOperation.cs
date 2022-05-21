@@ -3,6 +3,16 @@
     public class CustomerNumberOperation : ICustomerNumberOperation
     {
         /// <summary>
+        /// Sort the dictionary of number segments.
+        /// </summary>
+        /// <param name="input">the dictionary of number segments.</param>
+        /// <returns>Ordered dictionary of number segments.</returns>
+        public IOrderedEnumerable<KeyValuePair<int, IList<int>>> SortDictionaryInDescendingOrder(IDictionary<int, IList<int>> input)
+        {
+            return input.OrderByDescending(i => i.Value.Count).OrderBy(i => i.Key);
+        }
+
+        /// <summary>
         /// Create a dictionary from many lists of number segements.
         /// </summary>
         /// <param name="input">A list of numbers.</param>
