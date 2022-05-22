@@ -45,6 +45,7 @@
             {
                 if (!newList.Any())
                 {
+                    // This deals with the first item
                     newList.Add(input[i]);
                 }
                 else
@@ -59,11 +60,12 @@
                     {
                         newList.Add(input[i]);
                     }
+                }
 
-                    if (i == input.Count - 1)
-                    {
-                        yield return newList;
-                    }
+                // This is the last item
+                if (i == input.Count - 1)
+                {
+                    yield return newList;
                 }
             }
         }
@@ -85,7 +87,7 @@
         /// <returns>A list of strings.</returns>
         public IList<string> ConvertNumberListToStringList(IList<int> input)
         {
-            return input.ToList().ConvertAll<string>(x => x.ToString());
+            return input.ToList().ConvertAll(x => x.ToString());
         }
     }
 }
