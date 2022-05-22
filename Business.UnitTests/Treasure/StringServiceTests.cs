@@ -28,7 +28,7 @@
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter)
+        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter, string output)
         {
             // arrange
             var sut = _fixture.Create<IStringService>();
@@ -43,7 +43,7 @@
 
         [Theory(Skip = "Only want to show the 11 test cases")]
         [AutoMoqData]
-        public void GetFirstLongestIncreasingSubsequence_ShouldCatchException_WhenAnErrorOccurred(string input, string delimiter, string output)
+        public void GetFirstLongestIncreasingSubsequence_ShouldCatchException_WhenAnErrorOccurred(string input, string delimiter)
         {
             // arrange
             var sut = _fixture.Create<IStringService>();
