@@ -28,7 +28,7 @@
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter, string output)
+        public void GetFirstLongestIncreasingSubsequence_ShouldReturnAString(string input, string delimiter)
         {
             // arrange
             var sut = _fixture.Create<IStringService>();
