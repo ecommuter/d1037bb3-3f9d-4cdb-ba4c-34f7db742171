@@ -1,6 +1,9 @@
 ﻿global using System.Collections.Generic;
 global using Xunit;
 global using FluentAssertions;
+global using Common.Contract;
+global using Common.Ioc;
 global using Common.String;
 global using Common.Number;
 global using TestLibrary.Attributes;
+global using Microsoft.Extensions.DependencyInjection;

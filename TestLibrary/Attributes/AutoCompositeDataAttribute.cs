@@ -4,6 +4,7 @@
     /// Helper DataAttribute to use the regular xUnit based DataAttributes with AutoFixture and Mocking capabilities.
     /// </summary>
     /// <seealso cref="Xunit.Sdk.DataAttribute" />
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class AutoCompositeDataAttribute : DataAttribute
     {

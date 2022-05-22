@@ -1,5 +1,6 @@
-﻿namespace TestLibrary
+﻿namespace TestLibrary.Attributes
 {
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class AutoMoqDataAttribute : AutoDataAttribute
     {

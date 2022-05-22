@@ -4,6 +4,7 @@
     /// Member auto data implementation based on InlineAutoDataAttribute and MemberData
     /// </summary>
     /// <seealso cref="Ploeh.AutoFixture.Xunit2.CompositeDataAttribute" />
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class MemberAutoDataAttribute : AutoCompositeDataAttribute
     {

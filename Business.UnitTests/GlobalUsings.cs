@@ -1,4 +1,6 @@
 ﻿global using Xunit;
+global using Moq;
+global using System;
 global using FluentAssertions;
 global using Business.Contract;
 global using Common.Contract;
@@ -9,3 +11,6 @@ global using AutoFixture.Kernel;
 global using AutoFixture.AutoMoq;
 global using System.Collections.Generic;
 global using Business.Treasure;
+global using Business.Ioc;
+global using Microsoft.Extensions.DependencyInjection;
+global using TestLibrary.Attributes;

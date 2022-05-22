@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace Business.Treasure
+﻿namespace Business.Treasure
 {
     public class StringService : IStringService
     {
@@ -53,6 +51,7 @@ namespace Business.Treasure
             catch (Exception ex)
             {
                 _logger.LogError("An error occurred when executing the GetFirstLongestIncreasingSubsequence method in the StringService with message {Error}", ex.Message);
+                throw;
             }
 
             return firstLongestNumberSequence;

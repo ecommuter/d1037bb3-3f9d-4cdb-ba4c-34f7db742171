@@ -41,6 +41,20 @@
             result.Should().BeEquivalentTo(output);
         }
 
+        [Theory(Skip = "Only want to show the 11 test cases")]
+        [AutoMoqData]
+        public void GetFirstLongestIncreasingSubsequence_ShouldCatchException_WhenAnErrorOccurred(string input, string delimiter, string output)
+        {
+            // arrange
+            var sut = _fixture.Create<IStringService>();
+
+            // act
+            Action act = () => sut.GetFirstLongestIncreasingSubsequence(input, delimiter);
+
+            // assert
+            act.Should().Throw<Exception>();
+        }
+
         #endregion
 
         #region Private Methods - Test Data

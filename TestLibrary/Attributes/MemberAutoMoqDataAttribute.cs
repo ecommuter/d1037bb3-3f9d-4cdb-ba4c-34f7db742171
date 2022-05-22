@@ -3,6 +3,7 @@
     /// <summary>
     /// The member auto moq data attribute.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class MemberAutoMoqDataAttribute : MemberAutoDataAttribute
     {
