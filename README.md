@@ -1,5 +1,5 @@
 # d1037bb3-3f9d-4cdb-ba4c-34f7db742171
-A solution for coding challenge
+A solution for the coding challenge
 
 
 [Description](https://github.com/ksaifullah/coding-challenge)
