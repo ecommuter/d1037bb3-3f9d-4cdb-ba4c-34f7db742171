@@ -1,27 +1,14 @@
 ﻿namespace Common.UnitTests.Number
 {
-    public class CustomerNumberOperationTests : TestsBase
+    public class CustomerNumberOperationTests
     {
-        #region Constructor
-
-        public CustomerNumberOperationTests()
-        {
-            _fixture.Customizations.Add(
-                new TypeRelay(
-                    typeof(ICustomerNumberOperation),
-                    typeof(CustomerNumberOperation)));
-        }
-
-        #endregion
-
         #region Public Test Methods
 
         [Theory]
-        [MemberData(nameof(TestData))]
-        public void CreateNumberIncrementSegments_ShouldReturnListsOfSegments(IList<int> input, IDictionary<int, IList<int>> output)
+        [MemberAutoMoqData(nameof(TestData))]
+        public void CreateNumberIncrementSegments_ShouldReturnListsOfSegments(IList<int> input, IDictionary<int, IList<int>> output, CustomerNumberOperation sut)
         {
-            // arrange
-            var sut = CreateCustomerNumberOperation();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.CreateNumberIncrementSegments(input);
@@ -32,11 +19,10 @@
         }
 
         [Theory]
-        [MemberData(nameof(TestData))]
-        public void ConvertNumberListToDictionary_ShouldReturnADictionaryOfSegments(IList<int> input, IDictionary<int, IList<int>> output)
+        [MemberAutoMoqData(nameof(TestData))]
+        public void ConvertNumberListToDictionary_ShouldReturnADictionaryOfSegments(IList<int> input, IDictionary<int, IList<int>> output, CustomerNumberOperation sut)
         {
-            // arrange
-            var sut = CreateCustomerNumberOperation();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.ConvertNumberListToDictionary(input);
@@ -47,11 +33,10 @@
         }
 
         [Theory]
-        [MemberData(nameof(TestDataOrdering))]
-        public void SortDictionaryInDescendingOrder_ShouldReturnAListOfStrings(IDictionary<int, IList<int>> input, IDictionary<int, IList<int>> output)
+        [MemberAutoMoqData(nameof(TestDataOrdering))]
+        public void SortDictionaryInDescendingOrder_ShouldReturnAListOfStrings(IDictionary<int, IList<int>> input, IDictionary<int, IList<int>> output, CustomerNumberOperation sut)
         {
-            // arrange
-            var sut = CreateCustomerNumberOperation();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.SortDictionaryInDescendingOrder(input);
@@ -62,11 +47,10 @@
         }
 
         [Theory]
-        [MemberData(nameof(TestStringListData))]
-        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers(IList<string> input, IList<int> output)
+        [MemberAutoMoqData(nameof(TestStringListData))]
+        public void ConvertStringListToNumberList_ShouldReturnAListOfNumbers(IList<string> input, IList<int> output, CustomerNumberOperation sut)
         {
-            // arrange
-            var sut = CreateCustomerNumberOperation();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.ConvertStringListToNumberList(input);
@@ -78,11 +62,10 @@
         }
 
         [Theory]
-        [MemberData(nameof(TestStringListInvalidData))]
-        public void ConvertStringListToNumberList_ShouldReturnEmptyList_WhenInputIsInvalid(IList<string> input)
+        [MemberAutoMoqData(nameof(TestStringListInvalidData))]
+        public void ConvertStringListToNumberList_ShouldReturnEmptyList_WhenInputIsInvalid(IList<string> input, CustomerNumberOperation sut)
         {
-            // arrange
-            var sut = CreateCustomerNumberOperation();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.ConvertStringListToNumberList(input);
@@ -90,12 +73,6 @@
             // assert
             result.Should().BeEmpty();
         }
-
-        #endregion
-
-        #region Private Methods
-
-        private ICustomerNumberOperation CreateCustomerNumberOperation() => _fixture.Create<ICustomerNumberOperation>();
 
         #endregion
 

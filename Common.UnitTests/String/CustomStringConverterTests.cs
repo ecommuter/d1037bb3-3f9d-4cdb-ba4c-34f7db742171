@@ -1,27 +1,14 @@
 ﻿namespace Common.UnitTests.String
 {
-    public class CustomStringConverterTests : TestsBase
+    public class CustomStringConverterTests
     {
-        #region Constructor
-
-        public CustomStringConverterTests()
-        {
-            _fixture.Customizations.Add(
-                new TypeRelay(
-                    typeof(ICustomStringConverter),
-                    typeof(CustomStringConverter)));
-        }
-
-        #endregion
-
         #region Public Test Methods
 
         [Theory]
-        [MemberData(nameof(TestStringData))]
-        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings(string input, string delimiter, IList<string> output)
+        [MemberAutoMoqData(nameof(TestStringData))]
+        public void ConvertStringWithSeparatorIntoStringList_ShouldReturnAListOfStrings(string input, string delimiter, IList<string> output, CustomStringConverter sut)
         {
-            // arrange
-            var sut = CreateCustomStringConverter();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.ConvertStringWithSeparatorIntoStringList(input, delimiter);
@@ -33,11 +20,10 @@
         }
 
         [Theory]
-        [MemberData(nameof(TestStringListData))]
-        public void ConvertStringListIntoStringWithSeparator_ShouldReturnAString(IList<string> input, string delimiter, string output)
+        [MemberAutoMoqData(nameof(TestStringListData))]
+        public void ConvertStringListIntoStringWithSeparator_ShouldReturnAString(IList<string> input, string delimiter, string output, CustomStringConverter sut)
         {
-            // arrange
-            var sut = CreateCustomStringConverter();
+            // arrange is done by AutoMoq
 
             // act
             var result = sut.ConvertStringListIntoStringWithSeparator(input, delimiter);
@@ -46,12 +32,6 @@
             result.Should().NotBeNullOrEmpty();
             result.Should().BeEquivalentTo(output);
         }
-
-        #endregion
-
-        #region Private Methods
-
-        private ICustomStringConverter CreateCustomStringConverter() => _fixture.Create<ICustomStringConverter>();
 
         #endregion
 
