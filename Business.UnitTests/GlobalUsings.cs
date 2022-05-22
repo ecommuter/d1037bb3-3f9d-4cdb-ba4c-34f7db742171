@@ -1,5 +1,7 @@
 ﻿global using Xunit;
 global using FluentAssertions;
+global using Business.Contract;
+global using Common.Contract;
 global using Common.String;
 global using Common.Number;
 global using AutoFixture;

@@ -1,4 +1,4 @@
-﻿namespace Common.Number
+﻿namespace Common.Contract
 {
     public interface ICustomerNumberOperation
     {

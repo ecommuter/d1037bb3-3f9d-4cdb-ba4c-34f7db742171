@@ -1,5 +1,4 @@
-﻿
-namespace Business.Treasure
+﻿namespace Business.Contract
 {
     public interface IStringService
     {

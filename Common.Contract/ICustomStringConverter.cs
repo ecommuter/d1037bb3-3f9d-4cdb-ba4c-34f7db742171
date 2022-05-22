@@ -1,4 +1,4 @@
-﻿namespace Common.String
+﻿namespace Common.Contract
 {
     public interface ICustomStringConverter
     {
