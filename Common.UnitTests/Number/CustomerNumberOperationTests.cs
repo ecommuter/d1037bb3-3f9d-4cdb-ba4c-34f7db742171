@@ -1,5 +1,15 @@
 ﻿namespace Common.UnitTests.Number
 {
+    /// <summary>
+    /// People asked why we do unit testing on those methods that only using the built in methods from the framework,
+    /// the reason is simply because we do not want to assume those methods will never be changed,
+    /// additional logics might be added to break its original purpose hence it is kind of reasonalbe to 
+    /// test them as well, and that is the purpose of unit testing too.
+    /// 
+    /// We are testing the promise of the methods, not the methods' implementations by using either build in framework methods
+    /// or writing own logics to return the same results. The promise can be broken once newly added in logics (due to a new 
+    /// requirement or incorrect logics) that break its original purpose.
+    /// </summary>
     public class CustomerNumberOperationTests
     {
         #region Public Test Methods
