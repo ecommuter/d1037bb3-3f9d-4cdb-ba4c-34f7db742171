@@ -1,5 +1,11 @@
 ﻿namespace Common.Number
 {
+    /// <summary>
+    /// People asked why we do unit testing on those methods that only using the built in methods from the framework,
+    /// the reason is simply because we do not want to assume those methods will never be changed,
+    /// additional logics might be added to break its original purpose hence it is kind of reasonalbe to 
+    /// test them as well, and that is the purpose of unit testing too.
+    /// </summary>
     public class CustomerNumberOperation : ICustomerNumberOperation
     {
         /// <summary>

@@ -4,6 +4,13 @@
     {
         #region Constructor
 
+        /// <summary>
+        /// People asked why we do this, the sut is created from the interface,
+        /// consider this is similar to dependency injection registrations, the test cases
+        /// logics should only deal with the abstraction instead of a concret implementation
+        /// imagine there were 10 test cases, once we changed the concret class all the 10 cases
+        /// require a change that way, instead we just need to update the registration section.
+        /// </summary>
         public StringServiceTests()
         {
             _fixture.Customizations.Add(
